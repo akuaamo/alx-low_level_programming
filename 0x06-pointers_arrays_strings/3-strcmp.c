@@ -1,23 +1,50 @@
 #include "main.h"
 
 /**
- * reverse_array - Reverses the content of an array of integers.
- * @a: The array of integers to be reversed.
- * @n: The number of elements in the array.
- *
- */
-
-void reverse_array(int *a, int n)
-
+  * _strcmp - Compares two strings
+  * @s1: The first string
+  * @s2: The second string
+  *
+  * Return: int value
+  */
+int _strcmp(char *s1, char *s2)
 {
+	int a = 0, b = 0, c = 0, r = 0, lim;
 
-	int tmp, index;
-
-	for (index = n - 1; index >= n / 2; index--)
+	while (s1[a])
 	{
-	tmp = a[n - 1 - index];
-	a[n - 1 - index] = a[index];
-	a[index] = tmp;
+		a++;
 	}
 
+	while (s2[b])
+	{
+		b++;
+	}
+
+	if (a <= b)
+	{
+		lim = a;
+	}
+	else
+	{
+		lim = b;
+	}
+
+	while (c <= lim)
+	{
+		if (s1[c] == s2[c])
+		{
+			c++;
+			continue;
+		}
+		else
+		{
+			r = s1[c] - s2[c];
+			break;
+		}
+
+		c++;
+	}
+
+	return (r);
 }
