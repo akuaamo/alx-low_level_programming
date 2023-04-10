@@ -1,29 +1,34 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include "main.h"
+
 /**
- * Creates a file.
- *  A pointer to the name of the file to create.
- *  A pointer to a string to write to the file.
+ * _strlen - finds the length of a string
+ * @str: pointer to the string
  *
- * Return: If the function fails - -1.
- *         Otherwise - 1.
+ * Return: length of the string
+ */
+size_t _strlen(const char *str)
+{
+	size_t len = 0;
+
+	for (i = 0; str[i]; i++)
+		;
+	return (i);
+}
+
+/**
+ * create_file - creates a file.
+ * @filename: name of the file to create
+ * @text_content: NULL terminated string to write to the file
+ *
+ * Return: 1 on success, -1 on failure
  */
 int create_file(const char *filename, char *text_content)
 {
-	int fd, w, len = 0;
+	int fd;
+	ssize_t bytes_written = 0;
 
 	if (filename == NULL)
 		return (-1);
-
-	if (text_content != NULL)
-	{
-		for (len = 0; text_content[len];)
-			len++;
-	}
-
 	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
 	w = write(fd, text_content, len);
 
@@ -31,6 +36,5 @@ int create_file(const char *filename, char *text_content)
 		return (-1);
 
 	close(fd);
-
 	return (1);
 }
